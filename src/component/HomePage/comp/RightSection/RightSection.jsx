@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaSchool, FaMedal } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 export default function RightSection() {
   // Dummy data for schools with review counts
@@ -23,6 +24,14 @@ export default function RightSection() {
     { name: 'Ryan International', city: 'Mumbai', state: 'Maharashtra', reviews: 5 },
   ]);
 
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  // Function to handle navigation to school page
+  const handleSchoolClick = (schoolName) => {
+    // Here you can navigate to the desired route and pass the school name if needed
+    navigate('/school'); // Replace this with dynamic routing if needed
+  };
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       {/* Search Box */}
@@ -41,7 +50,8 @@ export default function RightSection() {
         {schools.map((school, index) => (
           <div
             key={index}
-            className="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+            className="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+            onClick={() => handleSchoolClick(school.name)} // Navigate on click
           >
             {/* School Icon */}
             <FaSchool className="text-blue-500 mr-3" size={40} />
